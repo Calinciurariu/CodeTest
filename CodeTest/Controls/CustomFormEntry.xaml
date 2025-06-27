@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      x:Class="CodeTest.Controls.CustomFormEntry"
+      xmlns:h="clr-namespace:CodeTest.Converters;assembly=CodeTest"
+      xmlns:ctrl="clr-namespace:CodeTest.Controls;assembly=CodeTest"
+      xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+      x:Name="this"
+      Style="{DynamicResource FormElement-container}">
+    <Grid.Resources>
+        <h:NegateIsNullOrEmptyConverter x:Key="NegateIsNullOrEmptyConverter" />
+    </Grid.Resources>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="auto" />
+        <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+    <Label Grid.Column="0"
+           Grid.Row="0"
+           WidthRequest="46"
+           Text="{Binding Source={x:Reference this}, Path=Icon}"
+           Style="{DynamicResource CustomFormEntry-icon}"
+           IsVisible="{Binding Source={x:Reference this}, Path=Icon, Converter={StaticResource NegateIsNullOrEmptyConverter}}" />
+    <VerticalStackLayout Grid.Column="1"
+                         Grid.Row="0">
+        <Label Text="{Binding Source={x:Reference this}, Path=Title}"
+               Style="{DynamicResource CustomFormEntry-placeholder}"
+               IsVisible="{Binding Source={x:Reference this}, Path=Title, Converter={StaticResource NegateIsNullOrEmptyConverter}}" />
+        <ctrl:CustomEntry x:Name="DTEntry"
+                          Text="{Binding Source={x:Reference this}, Path=Text}"
+                          HorizontalTextAlignment="{Binding Source={x:Reference this}, Path=HorizontalTextAlignment}"
+                          IsReadOnly="{Binding Source={x:Reference this}, Path=IsReadOnly}"
+                          Placeholder="{Binding Source={x:Reference this}, Path=Placeholder}"
+                          FontSize="{Binding Source={x:Reference this}, Path=FontSizeInternal}"
+                          ClearButtonVisibility="{Binding Source={x:Reference this}, Path=ClearButtonVisibility}"
+                          IsPassword="{Binding Source={x:Reference this}, Path=IsPassword}"
+                          TruncateValue="{Binding Source={x:Reference this}, Path=TruncateValue}"
+                          FullText="{Binding Source={x:Reference this}, Path=FullText}"
+                          MaxLength="{Binding Source={x:Reference this}, Path=MaxLength}"
+                          Keyboard="{Binding Source={x:Reference this}, Path=Keyboard}">
+            <ctrl:CustomEntry.Behaviors>
+                <mct:EventToCommandBehavior EventName="Completed"
+                                            Command="{Binding Source={x:Reference this}, Path=CompletedEventToCommand}" />
+            </ctrl:CustomEntry.Behaviors>
+        </ctrl:CustomEntry>
+    </VerticalStackLayout>
+</Grid>

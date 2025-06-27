@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CodeTest.MainPage"
+             xmlns:fontawesome="clr-namespace:CodeTest.Helpers;assembly=CodeTest"
+             xmlns:ctrl="clr-namespace:CodeTest.Controls;assembly=CodeTest"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:vm="clr-namespace:CodeTest.ViewModels"
+             x:DataType="vm:MainPageViewModel" 
+             NavigationPage.HasBackButton="False"
+             Title="My App">
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior Command="{Binding AppearingCommand}"
+                                        EventName="Appearing" />
+    </ContentPage.Behaviors>
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0"
+                             EndPoint="1,1">
+            <GradientStop Color="LightBlue"
+                          Offset="0.0" />
+            <GradientStop Color="White"
+                          Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    <Grid Padding="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Image Grid.Row="0"
+               Source="dotnet_bot.png"
+               HeightRequest="185"
+               Aspect="AspectFit"
+               Opacity="0"
+               x:Name="image"
+               SemanticProperties.Description="dot net bot in a race car number eight" />
+        <Frame Grid.Row="1"
+               Padding="20"
+               CornerRadius="10"
+               VerticalOptions="Center">
+            <VerticalStackLayout Spacing="20">
+                <ctrl:CustomFormEntry HorizontalOptions="FillAndExpand"
+                                      Text="{Binding Username}" 
+                                      Title="Username"
+                                      Icon="{x:Static fontawesome:FontAwesomeIcons.FaUser}"
+                                      Placeholder="Enter your username"
+                                      CompletedEventToCommand="{Binding NavigateToSecondPageCommand}" />
+                <ctrl:CustomButton Text="Log in"
+                                   Command="{Binding NavigateToSecondPageCommand}"
+                                   HorizontalOptions="Fill"
+                                   SemanticProperties.Hint="Navigates to the second page with the username" />
+            </VerticalStackLayout>
+        </Frame>
+        <ActivityIndicator IsEnabled="{Binding IsBusy}" IsRunning="{Binding IsBusy}"
+                           IsVisible="{Binding IsBusy}"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center" />
+    </Grid>
+</ContentPage>

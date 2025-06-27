@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:vm="clr-namespace:CodeTest.ViewModels"
+             x:DataType="vm:SecondPageViewModel"
+             NavigationPage.HasBackButton="True"
+             x:Class="CodeTest.SecondPage">
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior Command="{Binding AppearingCommand}"
+                                        EventName="Appearing" />
+    </ContentPage.Behaviors>
+    <StackLayout>
+        <Label Text="{Binding WelcomeText}"
+               x:Name="welcomeLabel"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+</ContentPage>
