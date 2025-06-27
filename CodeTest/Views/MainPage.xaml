@@ -26,6 +26,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Image Grid.Row="0"
                Source="dotnet_bot.png"
@@ -51,7 +52,7 @@
                                    SemanticProperties.Hint="Navigates to the second page with the username" />
             </VerticalStackLayout>
         </Frame>
-        <ActivityIndicator IsEnabled="{Binding IsBusy}" IsRunning="{Binding IsBusy}"
+        <ActivityIndicator Grid.Row="2" IsEnabled="{Binding IsBusy}" IsRunning="{Binding IsBusy}"
                            IsVisible="{Binding IsBusy}"
                            VerticalOptions="Center"
                            HorizontalOptions="Center" />

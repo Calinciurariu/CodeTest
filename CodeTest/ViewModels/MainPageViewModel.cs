@@ -41,6 +41,7 @@ namespace CodeTest.ViewModels
             }
 
         }
+
         [RelayCommand(AllowConcurrentExecutions = false)]
 
         private async Task Appearing()
