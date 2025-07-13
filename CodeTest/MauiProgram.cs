@@ -1,8 +1,10 @@
-﻿using CodeTest.Helpers;
+﻿using CodeTest.Controls;
+using CodeTest.Helpers;
 using CodeTest.Interfaces;
 #if IOS
 using CodeTest.Platforms.iOS.Services;
 #elif ANDROID
+using CodeTest.Platforms.Android.Handlers;
 using CodeTest.Platforms.Android.Services;
 #endif
 using CodeTest.ViewModels;
@@ -21,6 +23,14 @@ namespace CodeTest
                 .UseMauiApp<App>()
                 .UseMauiCompatibility()
                 .UseMauiCommunityToolkit()
+                .ConfigureMauiHandlers(handlers =>
+                {
+#if ANDROID
+                handlers.AddHandler(typeof(ScrollingLabelInternal), typeof(ScrollingLabelInternalViewHandler));
+                handlers.AddHandler(typeof(ScrollingLabel), typeof(ScrollingLabelHandler));
+#endif
+                }
+                )
                 .UseCustomNavigation()
                 .RegisterAppServices()
                 .RegisterViewModels()

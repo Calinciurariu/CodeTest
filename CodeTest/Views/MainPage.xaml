@@ -40,8 +40,9 @@
                CornerRadius="10"
                VerticalOptions="Center">
             <VerticalStackLayout Spacing="20">
+                <ctrl:ScrollingLabel Text="{Binding WelcomeText}" GradientColor="Blue"/>
                 <ctrl:CustomFormEntry HorizontalOptions="FillAndExpand"
-                                      Text="{Binding Username}" 
+                                      Text="{Binding Username, Mode=TwoWay}" 
                                       Title="Username"
                                       Icon="{x:Static fontawesome:FontAwesomeIcons.FaUser}"
                                       Placeholder="Enter your username"

@@ -8,7 +8,19 @@ namespace CodeTest.ViewModels
     {
         #region properties
         [ObservableProperty]
+        string welcomeText;
         string username; 
+        public string Username
+        {
+            get
+            {
+                return username;
+            }
+            set
+            {
+                username = value;
+            }
+        }
         #endregion
         public MainPageViewModel(INavigationPageService navigation) : base(navigation)
         {
@@ -19,27 +31,11 @@ namespace CodeTest.ViewModels
         [RelayCommand(AllowConcurrentExecutions =false)]
         private async Task NavigateToSecondPage()
         {
-            IsBusy = true;
-            try
-            {
-                if (string.IsNullOrWhiteSpace(username))
-                {
-                await Application.Current.MainPage.DisplayAlert("Error", "You can't just leave the username empty " , "OK");
-                    return;
-                }
-                var paramsToPass = new Dictionary<string, object> { };
-                paramsToPass.Add("UserName", username);
-                await Navigation.NavigateToAsync<SecondPageViewModel>(nameof(SecondPageViewModel), paramsToPass);
-            }
-            catch (Exception ex)
-            {
-                await Application.Current.MainPage.DisplayAlert("Error", "An error occurred while navigating: " + ex.Message, "OK");
-            }
-            finally
-            {
-                IsBusy = false;
-            }
+     
 
+            if (string.IsNullOrWhiteSpace(Username))
+                return;
+            WelcomeText += Username;
         }
 
         [RelayCommand(AllowConcurrentExecutions = false)]
