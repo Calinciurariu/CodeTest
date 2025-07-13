@@ -1,55 +1,48 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<Grid xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-     xmlns:controls="clr-namespace:CodeTest.Controls"
-     x:Class="CodeTest.Controls.ScrollingLabel"
-     x:Name="this"
-     HorizontalOptions="FillAndExpand"
-     ColumnSpacing="0"
-     RowSpacing="0"
-     ColumnDefinitions="10,*">
-   <controls:ScrollingLabelInternal Grid.Column="1"
-                                   x:Name="lblText"
-                                   LineBreakMode="TailTruncation"
-                                   MaxLines="1"
-                                   HorizontalOptions="StartAndExpand"
-                                   HorizontalTextAlignment="Start" />
+﻿<Grid xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+      xmlns:controls="clr-namespace:CodeTest.Controls"
+      x:Class="CodeTest.Controls.ScrollingLabel"
+      x:Name="this">
 
-   <StackLayout BackgroundColor="Transparent"
-                x:Name="fadeRight"
-                IsVisible="False"
-                Grid.Column="1"
-                HorizontalOptions="End"
-                WidthRequest="40"
-                VerticalOptions="FillAndExpand">
-       <StackLayout.Background>
-           <LinearGradientBrush StartPoint="1,0"
-                                EndPoint="0,0">
-               <GradientStop Color="{Binding Source={x:Reference this}, Path=GradientColor}"
-                             Offset="0.4" />
-               <GradientStop Color="Transparent"
-                             Offset="1" />
-           </LinearGradientBrush>
-       </StackLayout.Background>
-   </StackLayout>
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="0.001" />
+        <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
 
+    <BoxView x:Name="fadeLeft"
+             IsVisible="False"
+             Grid.Column="0">
+        <BoxView.Background>
+            <LinearGradientBrush StartPoint="0,0"
+                                 EndPoint="1,0">
+                <GradientStop Color="{Binding Source={x:Reference this}, Path=GradientColor}"
+                              Offset="0.1" />
+                <GradientStop Color="#00FFFFFF"
+                              Offset="1.0" />
+            </LinearGradientBrush>
+        </BoxView.Background>
+    </BoxView>
 
-   <StackLayout BackgroundColor="Transparent"
-                x:Name="fadeLeft"
-                IsVisible="False"
-                Grid.ColumnSpan="2"
-                Grid.Column="0"
-                WidthRequest="40"
-                HorizontalOptions="Start"
-                VerticalOptions="FillAndExpand">
-       <StackLayout.Background>
-           <LinearGradientBrush StartPoint="0,0"
-                                EndPoint="1,0">
-               <GradientStop Color="{Binding Source={x:Reference this}, Path=GradientColor}"
-                             Offset="0.4" />
-               <GradientStop Color="Transparent"
-                             Offset="1" />
-           </LinearGradientBrush>
-       </StackLayout.Background>
-   </StackLayout>
+    <controls:ScrollingLabelInternal x:Name="lblText"
+                                     Grid.Column="1"
+                                     VerticalOptions="Center"
+                                     ScrollText="{Binding Source={x:Reference this}, Path=Text}"
+                                     FontSize="{Binding Source={x:Reference this}, Path=FontSize}"
+                                     TextColor="{Binding Source={x:Reference this}, Path=TextColor}"
+                                     FontAttributes="{Binding Source={x:Reference this}, Path=FontAttributes}" />
+
+    <BoxView x:Name="fadeRight"
+             IsVisible="False"
+             Grid.Column="1"
+             HorizontalOptions="End">
+        <BoxView.Background>
+            <LinearGradientBrush StartPoint="0,0"
+                                 EndPoint="1,0">
+                <GradientStop Color="#00FFFFFF"
+                              Offset="0.1" />
+                <GradientStop Color="{Binding Source={x:Reference this}, Path=GradientColor}"
+                              Offset="1.0" />
+            </LinearGradientBrush>
+        </BoxView.Background>
+    </BoxView>
 </Grid>

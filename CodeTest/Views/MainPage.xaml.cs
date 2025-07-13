@@ -9,11 +9,7 @@ namespace CodeTest
             InitializeComponent();
             BindingContext = mainPageViewModel;
         }
-        protected override async void OnAppearing()
-        {
-            base.OnAppearing();
-            await image.FadeTo(1, 1000); // Fade in over 1 second
-        }
+        
     }
 
 }

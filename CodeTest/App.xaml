@@ -1,4 +1,4 @@
-﻿<?xml version = "1.0" encoding = "UTF-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 <Application xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:CodeTest"
@@ -8,63 +8,6 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
-
-                <ResourceDictionary>
-                    <Color x:Key="black700">#cfd2d6</Color>
-                    <Color x:Key="primary">#0ab490</Color>
-                    <Style TargetType="Grid"
-                           x:Key="FormElement-container">
-                        <Setter Property="Margin"
-                                Value="0,12" />
-                    </Style>
-
-                    <Style TargetType="Label">
-                        <Setter Property="FontSize"
-                                Value="16" />
-                        <Setter Property="TextColor"
-                                Value="Black" />
-                    </Style>
-                    <Style TargetType="Button">
-                        <Setter Property="BackgroundColor"
-                                Value="Blue" />
-                        <Setter Property="TextColor"
-                                Value="White" />
-                        <Setter Property="CornerRadius"
-                                Value="5" />
-                    </Style>
-          
-                    <Style TargetType="Label"
-                           x:Key="CustomFormEntry-icon">
-                        <Setter Property="FontFamily"
-                                Value="FontAwesomeLight" />
-                        <Setter Property="FontSize"
-                                Value="20" />
-                        <Setter Property="Margin"
-                                Value="0,0,16,0" />
-                        <Setter Property="HorizontalTextAlignment"
-                                Value="Center" />
-                        <Setter Property="WidthRequest"
-                                Value="30" />
-                        <Setter Property="VerticalOptions"
-                                Value="Center" />
-                        <Setter Property="TextColor"
-                                Value="{StaticResource primary}" />
-                    </Style>
-
-                    <Style TargetType="Label"
-                           x:Key="CustomFormEntry-placeholder">
-                        <Setter Property="FontFamily"
-                                Value="PrimaryBold" />
-                        <Setter Property="TextTransform"
-                                Value="Uppercase" />
-                        <Setter Property="FontSize"
-                                Value="11" />
-                        <Setter Property="Margin"
-                                Value="4,0,0,-2" />
-                        <Setter Property="TextColor"
-                                Value="{StaticResource black700}" />
-                    </Style>
-                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

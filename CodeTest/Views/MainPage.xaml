@@ -1,61 +1,159 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:CodeTest.ViewModels"
+             xmlns:models="clr-namespace:CodeTest.Models"
+             xmlns:helpers="clr-namespace:CodeTest.Helpers"
+             xmlns:controls="clr-namespace:CodeTest.Controls"
              x:Class="CodeTest.MainPage"
-             xmlns:fontawesome="clr-namespace:CodeTest.Helpers;assembly=CodeTest"
-             xmlns:ctrl="clr-namespace:CodeTest.Controls;assembly=CodeTest"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             xmlns:vm="clr-namespace:CodeTest.ViewModels"
-             x:DataType="vm:MainPageViewModel" 
-             NavigationPage.HasBackButton="False"
-             Title="My App">
-    <ContentPage.Behaviors>
-        <toolkit:EventToCommandBehavior Command="{Binding AppearingCommand}"
-                                        EventName="Appearing" />
-    </ContentPage.Behaviors>
-    <ContentPage.Background>
-        <LinearGradientBrush StartPoint="0,0"
-                             EndPoint="1,1">
-            <GradientStop Color="LightBlue"
-                          Offset="0.0" />
-            <GradientStop Color="White"
-                          Offset="1.0" />
-        </LinearGradientBrush>
-    </ContentPage.Background>
-    <Grid Padding="20">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <Image Grid.Row="0"
-               Source="dotnet_bot.png"
-               HeightRequest="185"
-               Aspect="AspectFit"
-               Opacity="0"
-               x:Name="image"
-               SemanticProperties.Description="dot net bot in a race car number eight" />
-        <Frame Grid.Row="1"
-               Padding="20"
-               CornerRadius="10"
-               VerticalOptions="Center">
-            <VerticalStackLayout Spacing="20">
-                <ctrl:ScrollingLabel Text="{Binding WelcomeText}" GradientColor="Blue"/>
-                <ctrl:CustomFormEntry HorizontalOptions="FillAndExpand"
-                                      Text="{Binding Username, Mode=TwoWay}" 
-                                      Title="Username"
-                                      Icon="{x:Static fontawesome:FontAwesomeIcons.FaUser}"
-                                      Placeholder="Enter your username"
-                                      CompletedEventToCommand="{Binding NavigateToSecondPageCommand}" />
-                <ctrl:CustomButton Text="Log in"
-                                   Command="{Binding NavigateToSecondPageCommand}"
-                                   HorizontalOptions="Fill"
-                                   SemanticProperties.Hint="Navigates to the second page with the username" />
+             x:DataType="viewModels:MainPageViewModel"
+             NavigationPage.HasNavigationBar="False"
+             Shell.NavBarIsVisible="False">
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1"
+                                 StartPoint="0.5,0">
+                <GradientStop Color="#4A4E69"
+                              Offset="0.0" />
+                <GradientStop Color="#2C3A5A"
+                              Offset="0.4" />
+                <GradientStop Color="#1E2A44"
+                              Offset="1.0" />
+            </LinearGradientBrush>
+        </Grid.Background>
+
+        <Grid RowDefinitions="Auto,*,Auto,Auto,Auto,Auto,Auto"
+              Padding="20,0">
+
+            <BoxView Grid.Row="0"
+                     CornerRadius="2.5"
+                     HeightRequest="5"
+                     WidthRequest="40"
+                     Color="White"
+                     Opacity="0.5"
+                     VerticalOptions="Start"
+                     Margin="0,15,0,20" />
+
+            <CarouselView Grid.Row="1"
+                          ItemsSource="{Binding Songs}"
+                          IndicatorView="indicatorView"
+                          Position="{Binding CurrentPosition, Mode=TwoWay}">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Song">
+                        <Frame Padding="0"
+                               CornerRadius="15"
+                               BorderColor="Transparent"
+                               HasShadow="True"
+                               BackgroundColor="Transparent">
+                            <Image Aspect="AspectFill"
+                                   Source="{Binding AlbumArt}" />
+                        </Frame>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+
+            <IndicatorView x:Name="indicatorView"
+                           Grid.Row="1"
+                           IndicatorColor="#6c757d"
+                           SelectedIndicatorColor="White"
+                           HorizontalOptions="Center"
+                           VerticalOptions="End"
+                           Margin="0,0,0,10" />
+
+            <VerticalStackLayout Grid.Row="2"
+                                 Margin="0,30,0,0"
+                                 Spacing="5">
+                <controls:ScrollingLabel Text="{Binding CurrentSong.Title}"
+                                         FontSize="24"
+                                         GradientColor="#1E2A44"
+                                         FontAttributes="Bold"
+                                         HorizontalOptions="Center"
+                                         TextColor="White" />
+                <controls:ScrollingLabel Text="{Binding CurrentSong.Artist}"
+                                         FontSize="18"
+                                         GradientColor="#1E2A44"
+                                         HorizontalOptions="Center"
+                                         TextColor="LightGray" />
             </VerticalStackLayout>
-        </Frame>
-        <ActivityIndicator Grid.Row="2" IsEnabled="{Binding IsBusy}" IsRunning="{Binding IsBusy}"
-                           IsVisible="{Binding IsBusy}"
-                           VerticalOptions="Center"
-                           HorizontalOptions="Center" />
+
+            <Grid Grid.Row="3"
+                  Margin="0,20,0,0"
+                  ColumnDefinitions="Auto,*,Auto">
+                <Label Grid.Column="0"
+                       Text="1:28"
+                       TextColor="LightGray"
+                       VerticalOptions="Center" />
+                <Slider Grid.Column="1"
+                        MinimumTrackColor="{StaticResource Primary}"
+                        MaximumTrackColor="Gray"
+                        ThumbColor="{StaticResource Primary}"
+                        Value="30"
+                        Margin="10,0" />
+                <Label Grid.Column="2"
+                       Text="-4:20"
+                       TextColor="LightGray"
+                       VerticalOptions="Center" />
+            </Grid>
+
+            <HorizontalStackLayout Grid.Row="4"
+                                   HorizontalOptions="Center"
+                                   Spacing="40"
+                                   Margin="0,10,0,0">
+                <ImageButton Command="{Binding PreviousTrackCommand}"
+                             Style="{StaticResource MediaButton}">
+                    <ImageButton.Source>
+                        <FontImageSource FontFamily="FontAwesomeSolid"
+                                         Glyph="{x:Static helpers:FontAwesomeIcons.FaBackwardStep}"
+                                         Color="White" />
+                    </ImageButton.Source>
+                </ImageButton>
+
+                <ImageButton Command="{Binding PlayPauseCommand}"
+                             Style="{StaticResource MediaButtonPlay}">
+                    <ImageButton.Source>
+                        <FontImageSource FontFamily="FontAwesomeSolid"
+                                         Glyph="{Binding PlayPauseIcon}"
+                                         Color="Black" />
+                    </ImageButton.Source>
+                </ImageButton>
+
+                <ImageButton Command="{Binding NextTrackCommand}"
+                             Style="{StaticResource MediaButton}">
+                    <ImageButton.Source>
+                        <FontImageSource FontFamily="FontAwesomeSolid"
+                                         Glyph="{x:Static helpers:FontAwesomeIcons.FaForwardStep}"
+                                         Color="White" />
+                    </ImageButton.Source>
+                </ImageButton>
+            </HorizontalStackLayout>
+
+            <Grid Grid.Row="5"
+                  Margin="0,20"
+                  ColumnDefinitions="Auto,*,Auto"
+                  VerticalOptions="Center">
+                <Image Grid.Column="0">
+                    <Image.Source>
+                        <FontImageSource FontFamily="FontAwesomeSolid"
+                                         Glyph="{x:Static helpers:FontAwesomeIcons.FaVolumeLow}"
+                                         Color="Gray" />
+                    </Image.Source>
+                </Image>
+                <Slider Grid.Column="1"
+                        MinimumTrackColor="White"
+                        MaximumTrackColor="Gray"
+                        ThumbColor="White"
+                        Value="60"
+                        Margin="10,0" />
+                <Image Grid.Column="2">
+                    <Image.Source>
+                        <FontImageSource FontFamily="FontAwesomeSolid"
+                                         Glyph="{x:Static helpers:FontAwesomeIcons.FaVolumeHigh}"
+                                         Color="Gray" />
+                    </Image.Source>
+                </Image>
+            </Grid>
+
+        </Grid>
     </Grid>
 </ContentPage>

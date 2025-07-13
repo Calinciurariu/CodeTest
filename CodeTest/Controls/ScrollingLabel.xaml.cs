@@ -1,5 +1,4 @@
-﻿
-namespace CodeTest.Controls
+﻿namespace CodeTest.Controls
 {
     public partial class ScrollingLabel : Grid
     {
@@ -7,6 +6,7 @@ namespace CodeTest.Controls
         {
             InitializeComponent();
         }
+
         public static readonly BindableProperty GradientColorProperty = BindableProperty.Create(
              nameof(GradientColor), typeof(Color), typeof(ScrollingLabel), Color.FromArgb("#ffffff"));
         public Color GradientColor
@@ -15,49 +15,39 @@ namespace CodeTest.Controls
             set { SetValue(GradientColorProperty, value); }
         }
 
-
-
         public static readonly BindableProperty TextProperty =
-                BindableProperty.Create(propertyName: nameof(Text),
-                returnType: typeof(string),
-                declaringType: typeof(ScrollingLabel),
-                defaultValue: null,
-                defaultBindingMode: BindingMode.OneWay,
-                propertyChanging: OnTextChanged);
-
+                BindableProperty.Create(nameof(Text), typeof(string), typeof(ScrollingLabel), string.Empty);
         public string Text
         {
             get { return (string)GetValue(TextProperty); }
             set { SetValue(TextProperty, value); }
         }
 
-        private static void OnTextChanged(BindableObject pObj, object pOldVal, object pNewVal)
-        {
-            (pObj as ScrollingLabel).lblText.ScrollText = pNewVal as string;
-        }
-
-
-
-
-
         public static readonly BindableProperty FontSizeProperty =
-                BindableProperty.Create(propertyName: nameof(FontSize),
-                returnType: typeof(double),
-                declaringType: typeof(ScrollingLabel),
-                defaultValue: 16d,
-                defaultBindingMode: BindingMode.OneWay,
-                propertyChanging: OnFontSizeChanged);
+                BindableProperty.Create(nameof(FontSize), typeof(double), typeof(ScrollingLabel), 16d);
         public double FontSize
         {
             get { return (double)GetValue(FontSizeProperty); }
             set { SetValue(FontSizeProperty, value); }
         }
-        private static void OnFontSizeChanged(BindableObject pObj, object pOldVal, object pNewVal)
+
+        // NEW: Add TextColor property
+        public static readonly BindableProperty TextColorProperty =
+                BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(ScrollingLabel), Colors.Black);
+        public Color TextColor
         {
-            if (pNewVal != null)
-                (pObj as ScrollingLabel).lblText.FontSize = Convert.ToDouble(pNewVal);
+            get => (Color)GetValue(TextColorProperty);
+            set => SetValue(TextColorProperty, value);
         }
 
+        // NEW: Add FontAttributes property
+        public static readonly BindableProperty FontAttributesProperty =
+                BindableProperty.Create(nameof(FontAttributes), typeof(FontAttributes), typeof(ScrollingLabel), FontAttributes.None);
+        public FontAttributes FontAttributes
+        {
+            get => (FontAttributes)GetValue(FontAttributesProperty);
+            set => SetValue(FontAttributesProperty, value);
+        }
 
         public void ShowFade(bool show, double lengthOfThreeDotsByFontsize)
         {
