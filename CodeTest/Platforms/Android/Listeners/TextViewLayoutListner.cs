@@ -12,12 +12,12 @@ namespace CodeTest.Platforms.Android.Listeners
     internal class TextViewLayoutListner : Java.Lang.Object, ViewTreeObserver.IOnGlobalLayoutListener
     {
         private TextView textView;
-        private ScrollingLabelInternal ssLabelScroll;
+        private ScrollingLabelInternal _scrollingLabelInternal;
 
-        public TextViewLayoutListner(TextView textView, ScrollingLabelInternal ssLabelScroll)
+        public TextViewLayoutListner(TextView textView, ScrollingLabelInternal scrollingLabelInternal)
         {
             this.textView = textView;
-            this.ssLabelScroll = ssLabelScroll;
+            this._scrollingLabelInternal = scrollingLabelInternal;
         }
 
         public void OnGlobalLayout()
@@ -25,9 +25,9 @@ namespace CodeTest.Platforms.Android.Listeners
             textView.ViewTreeObserver.RemoveOnGlobalLayoutListener(this);
 
             if (textView.Layout.LineCount > 0)
-                ssLabelScroll.StartScroll(textView.Layout.GetEllipsisCount(0) > 0);
+                _scrollingLabelInternal.StartScroll(textView.Layout.GetEllipsisCount(0) > 0);
             else
-                ssLabelScroll.StartScroll(false);
+                _scrollingLabelInternal.StartScroll(false);
         }
 
     }
