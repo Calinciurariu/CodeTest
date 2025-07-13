@@ -5,7 +5,6 @@
 
     <Color x:Key="Primary">#512BD4</Color>
 
-    <Color x:Key="primary">#0ab490</Color>
     <Color x:Key="black700">#cfd2d6</Color>
 
     <Color x:Key="White">White</Color>

@@ -39,20 +39,20 @@ namespace CodeTest.ViewModels
             {
                 new Song
                 {
-                    Title = "The Night We Met Under The Stars Of A Thousand Skies",
-                    Artist = "Lord Huron & The Interstellar Orchestra",
+                    Title = "Rock that CancellationTokenSource (Asynchronous ballad)",
+                    Artist = "Gerald and the CancellationTokens",
                     AlbumArt = "song1.png"
                 },
                 new Song
                 {
-                    Title = "Echoes in the Grand Canyon of a Billion Forgotten Dreams",
-                    Artist = "The Celestial Harmonies Philharmonic",
+                    Title = "Till' I collapse the Azure instance",
+                    Artist = "David Ortinau ft Eminem",
                     AlbumArt = "song2.png"
                 },
                 new Song
                 {
-                    Title = "A Long and Winding Road to Nowhere in Particular",
-                    Artist = "The Philosophical Troubadours",
+                    Title = "Why Matt Believes a Man Can Fly",
+                    Artist = "The Beer Driven Devs",
                     AlbumArt = "song3.png"
                 }
             };

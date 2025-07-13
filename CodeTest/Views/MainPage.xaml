@@ -12,13 +12,13 @@
 
     <Grid>
         <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1"
+            <LinearGradientBrush EndPoint="1,1"
                                  StartPoint="0.5,0">
-                <GradientStop Color="#4A4E69"
+                <GradientStop Color="#fbfbfb"
                               Offset="0.0" />
-                <GradientStop Color="#2C3A5A"
+                <GradientStop Color="{x:DynamicResource Primary}"
                               Offset="0.4" />
-                <GradientStop Color="#1E2A44"
+                <GradientStop Color="#1B6A70"
                               Offset="1.0" />
             </LinearGradientBrush>
         </Grid.Background>
@@ -43,7 +43,7 @@
                     <DataTemplate x:DataType="models:Song">
                         <Frame Padding="0"
                                CornerRadius="15"
-                               BorderColor="Transparent"
+                               BorderColor="Black"
                                HasShadow="True"
                                BackgroundColor="Transparent">
                             <Image Aspect="AspectFill"
@@ -82,17 +82,17 @@
                   ColumnDefinitions="Auto,*,Auto">
                 <Label Grid.Column="0"
                        Text="1:28"
-                       TextColor="LightGray"
+                       TextColor="Black"
                        VerticalOptions="Center" />
                 <Slider Grid.Column="1"
-                        MinimumTrackColor="{StaticResource Primary}"
-                        MaximumTrackColor="Gray"
-                        ThumbColor="{StaticResource Primary}"
+                        MinimumTrackColor="{x:DynamicResource Black}"
+                        MaximumTrackColor="White"
+                        ThumbColor="{x:DynamicResource Black}"
                         Value="30"
                         Margin="10,0" />
                 <Label Grid.Column="2"
                        Text="-4:20"
-                       TextColor="LightGray"
+                       TextColor="Black"
                        VerticalOptions="Center" />
             </Grid>
 
@@ -101,29 +101,29 @@
                                    Spacing="40"
                                    Margin="0,10,0,0">
                 <ImageButton Command="{Binding PreviousTrackCommand}"
-                             Style="{StaticResource MediaButton}">
+                             Style="{x:DynamicResource MediaButton}">
                     <ImageButton.Source>
                         <FontImageSource FontFamily="FontAwesomeSolid"
                                          Glyph="{x:Static helpers:FontAwesomeIcons.FaBackwardStep}"
-                                         Color="White" />
+                                         Color="Black" />
                     </ImageButton.Source>
                 </ImageButton>
 
-                <ImageButton Command="{Binding PlayPauseCommand}"
-                             Style="{StaticResource MediaButtonPlay}">
+                <ImageButton Command="{Binding PlayPauseCommand}" BackgroundColor="Transparent"
+                             Style="{x:DynamicResource MediaButtonPlay}">
                     <ImageButton.Source>
-                        <FontImageSource FontFamily="FontAwesomeSolid"
+                        <FontImageSource FontFamily="FontAwesomeSolid" 
                                          Glyph="{Binding PlayPauseIcon}"
                                          Color="Black" />
                     </ImageButton.Source>
                 </ImageButton>
 
                 <ImageButton Command="{Binding NextTrackCommand}"
-                             Style="{StaticResource MediaButton}">
+                             Style="{x:DynamicResource MediaButton}">
                     <ImageButton.Source>
                         <FontImageSource FontFamily="FontAwesomeSolid"
                                          Glyph="{x:Static helpers:FontAwesomeIcons.FaForwardStep}"
-                                         Color="White" />
+                                         Color="Black" />
                     </ImageButton.Source>
                 </ImageButton>
             </HorizontalStackLayout>
@@ -134,13 +134,13 @@
                   VerticalOptions="Center">
                 <Image Grid.Column="0">
                     <Image.Source>
-                        <FontImageSource FontFamily="FontAwesomeSolid"
+                        <FontImageSource FontFamily="FontAwesomeSolid" 
                                          Glyph="{x:Static helpers:FontAwesomeIcons.FaVolumeLow}"
-                                         Color="Gray" />
+                                         Color="Black" />
                     </Image.Source>
                 </Image>
                 <Slider Grid.Column="1"
-                        MinimumTrackColor="White"
+                        MinimumTrackColor="black"
                         MaximumTrackColor="Gray"
                         ThumbColor="White"
                         Value="60"
@@ -149,7 +149,7 @@
                     <Image.Source>
                         <FontImageSource FontFamily="FontAwesomeSolid"
                                          Glyph="{x:Static helpers:FontAwesomeIcons.FaVolumeHigh}"
-                                         Color="Gray" />
+                                         Color="Black" />
                     </Image.Source>
                 </Image>
             </Grid>

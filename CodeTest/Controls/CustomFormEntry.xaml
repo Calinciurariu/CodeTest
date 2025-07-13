@@ -22,12 +22,12 @@
            WidthRequest="46"
            Text="{Binding Source={x:Reference this}, Path=Icon}"
            Style="{DynamicResource CustomFormEntry-icon}"
-           IsVisible="{Binding Source={x:Reference this}, Path=Icon, Converter={StaticResource NegateIsNullOrEmptyConverter}}" />
+           IsVisible="{Binding Source={x:Reference this}, Path=Icon, Converter={x:StaticResource NegateIsNullOrEmptyConverter}}" />
     <VerticalStackLayout Grid.Column="1"
                          Grid.Row="0">
         <Label Text="{Binding Source={x:Reference this}, Path=Title}"
                Style="{DynamicResource CustomFormEntry-placeholder}"
-               IsVisible="{Binding Source={x:Reference this}, Path=Title, Converter={StaticResource NegateIsNullOrEmptyConverter}}" />
+               IsVisible="{Binding Source={x:Reference this}, Path=Title, Converter={x:StaticResource NegateIsNullOrEmptyConverter}}" />
         <ctrl:CustomEntry x:Name="DTEntry"
                           Text="{Binding Source={x:Reference this}, Path=Text}"
                           HorizontalTextAlignment="{Binding Source={x:Reference this}, Path=HorizontalTextAlignment}"
